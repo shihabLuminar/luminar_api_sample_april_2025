@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luminar_api_sample_april_2025/view/home_screen/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,8 +17,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Logging in as ${_emailController.text}")),
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+        (route) => false,
       );
     }
   }

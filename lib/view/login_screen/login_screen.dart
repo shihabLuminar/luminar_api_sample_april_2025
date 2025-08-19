@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:luminar_api_sample_april_2025/controller/login_controller.dart';
 import 'package:luminar_api_sample_april_2025/view/home_screen/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,11 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-        (route) => false,
+      context.read<LoginController>().login(
+        email: _emailController.text,
+        password: _passwordController.text,
       );
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => HomePage()),
+      //   (route) => false,
+      // );
     }
   }
 

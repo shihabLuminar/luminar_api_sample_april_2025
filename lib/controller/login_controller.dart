@@ -25,8 +25,11 @@ class LoginController with ChangeNotifier {
       LoginResModel loginData = loginResModelFromJson(response);
 
       log(loginData.access.toString());
+
+      // store token to local db
       await AppUtils.storeToken(loginData.access.toString());
 
+      // navigate to home page on successful login
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => HomePage()),

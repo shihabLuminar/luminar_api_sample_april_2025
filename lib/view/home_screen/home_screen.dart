@@ -42,7 +42,10 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
+              // clear toke in shared preferences on  logout
               await AppUtils.asyncPrefs.clear();
+
+              // navigate to login screen on logout
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => LoginScreen()),

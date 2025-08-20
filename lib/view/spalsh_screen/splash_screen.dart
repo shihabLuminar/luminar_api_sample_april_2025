@@ -19,14 +19,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Delay for 3 seconds then navigate
     Timer(const Duration(seconds: 3), () async {
+      // get stored token from local db
       String storedToken = await AppUtils.getToken();
 
       if (storedToken.isNotEmpty) {
+        //navigate to home page if already have a valid token
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
+        // else nvigate to login page
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),

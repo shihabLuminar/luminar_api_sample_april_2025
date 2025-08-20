@@ -19,15 +19,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() {
     if (_formKey.currentState!.validate()) {
       context.read<LoginController>().login(
-        context: context,
-        email: _emailController.text,
-        password: _passwordController.text,
+        context: context, // context for navigation inside the login function
+        email: _emailController.text, // user email
+        password: _passwordController.text, //user password
       );
-      // Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => HomePage()),
-      //   (route) => false,
-      // );
     }
   }
 

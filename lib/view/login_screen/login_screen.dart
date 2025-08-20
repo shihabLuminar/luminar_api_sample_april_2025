@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:luminar_api_sample_april_2025/controller/login_controller.dart';
-import 'package:luminar_api_sample_april_2025/view/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() {
     if (_formKey.currentState!.validate()) {
       context.read<LoginController>().login(
+        context: context,
         email: _emailController.text,
         password: _passwordController.text,
       );

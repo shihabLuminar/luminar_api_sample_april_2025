@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:luminar_api_sample_april_2025/utils/app_utils.dart';
+import 'package:luminar_api_sample_april_2025/view/login_screen/login_screen.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -37,6 +39,19 @@ class HomePage extends StatelessWidget {
         title: const Text("Products"),
         backgroundColor: Colors.indigo,
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await AppUtils.asyncPrefs.clear();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+                (route) => false,
+              );
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),

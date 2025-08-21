@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luminar_api_sample_april_2025/controller/home_contrller.dart';
 import 'package:luminar_api_sample_april_2025/controller/login_controller.dart';
 import 'package:luminar_api_sample_april_2025/view/login_screen/login_screen.dart';
 import 'package:luminar_api_sample_april_2025/view/spalsh_screen/splash_screen.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => LoginController()),
+        ChangeNotifierProvider(create: (context) => HomeController()),
       ],
       child: MaterialApp(home: SplashScreen()),
     );

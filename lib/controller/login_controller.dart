@@ -19,6 +19,7 @@ class LoginController with ChangeNotifier {
 
     final response = await ApiServices.postData(
       enpointUrl: "/login",
+      headers: {"Content-Type": "application/json"},
       postBody: {"email": email, "password": password},
     );
     if (response != null) {

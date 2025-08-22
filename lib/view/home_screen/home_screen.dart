@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:luminar_api_sample_april_2025/controller/home_contrller.dart';
 import 'package:luminar_api_sample_april_2025/utils/app_utils.dart';
+import 'package:luminar_api_sample_april_2025/view/add_product_screen/add_product_screen.dart';
 import 'package:luminar_api_sample_april_2025/view/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +48,18 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.logout),
           ),
         ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          String token = await AppUtils.getToken();
+          log(token.toString());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddProductScreen()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -131,12 +146,25 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           const SizedBox(height: 4),
-                          Text(
-                            "Category: ${product.category}",
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.black54,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Category: ${product.category}",
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  context.read<HomeController>().productDele(
+                                    product.id.toString(),
+                                  );
+                                },
+                                icon: Icon(Icons.delete),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:luminar_api_sample_april_2025/app_config/app_config.dart';
 
@@ -21,7 +23,11 @@ class ApiServices {
     Map<String, String>? headers,
   }) async {
     final url = Uri.parse("${AppConfig.baseUrl}$enpointUrl");
-    final response = await http.post(url, body: postBody, headers: headers);
+    final response = await http.post(
+      url,
+      body: jsonEncode(postBody),
+      headers: headers,
+    );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return response.body;
@@ -35,7 +41,11 @@ class ApiServices {
     Map<String, String>? headers,
   }) async {
     final url = Uri.parse("${AppConfig.baseUrl}$enpointUrl");
-    final response = await http.put(url, body: postBody, headers: headers);
+    final response = await http.put(
+      url,
+      body: jsonEncode(postBody),
+      headers: headers,
+    );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return response.body;
@@ -49,7 +59,11 @@ class ApiServices {
     Map<String, String>? headers,
   }) async {
     final url = Uri.parse("${AppConfig.baseUrl}$enpointUrl");
-    final response = await http.patch(url, body: postBody, headers: headers);
+    final response = await http.patch(
+      url,
+      body: jsonEncode(postBody),
+      headers: headers,
+    );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return response.body;

@@ -26,4 +26,19 @@ class HomeController with ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
+  // /product-delete/237/
+
+  Future<void> productDele(String productId) async {
+    String token = await AppUtils.getToken();
+
+    final response = await ApiServices.deleteData(
+      enpointUrl: "/product-delete/$productId/",
+      headers: {"Authorization": "Bearer $token"},
+    );
+
+    if (response != null) {
+      fetchMyProducts();
+    }
+  }
 }
